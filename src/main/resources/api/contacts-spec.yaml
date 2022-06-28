@@ -95,6 +95,10 @@ components:
           type: string
           description: Home Phone number of the employee
           example: 6955171877
+        personal email:
+          type: string
+          description: Email of the employee
+          example: walmark@gmail.com
     Contact:
       allOf:
         - $ref: '#/components/schemas/ContactProperties'

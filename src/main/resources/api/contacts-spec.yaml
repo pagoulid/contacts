@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: Phone Service
+  description: Service to manage phonebook entries
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /contacts:
+    get:
+      tags:
+        - contacts
+      summary: retrieves all contacts objects
+      operationId: findAllContacts
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        200:
+          description: "Successfully get objects"
+          content:
+            application/json:
+              schema:
+                type: array
+                description: "Found contact objects"
+                items:
+                  $ref: '#/components/schemas/Contact'
+        default:
+          $ref: '#/components/responses/Error'
+    post:
+      tags:
+        - contacts
+      summary: adds a new contact
+      operationId: AddContact
+      requestBody:
+        description: Contact object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContact'
+        required: true
+      responses:
+        201:
+          description: Created contact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        400:
+          $ref: '#/components/responses/InvalidInput'
+        default:
+          $ref: '#/components/responses/Error'
+
+
+components:
+  schemas:
+    Error:
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    ContactProperties:
+      required:
+        - first name
+        - last name
+        - business phone
+        - personal  phone
+        - mobile phone
+        - personal email
+      type: object
+      properties:
+        first name:
+          type: string
+          description: first name of the employee
+          example: Mark
+        last name:
+          type: string
+          description: last name of the employee
+          example: Walberg
+        business phone:
+          type: string
+          description: Business Phone number of the employee
+          example: 24108678
+        personal phone:
+          type: string
+          description: Home Phone number of the employee
+          example: 24108678
+        mobile phone:
+          type: string
+          description: Home Phone number of the employee
+          example: 6955171877
+    Contact:
+      allOf:
+        - $ref: '#/components/schemas/ContactProperties'
+    CreateContact:
+      allOf:
+        - $ref: '#/components/schemas/ContactProperties'
+  responses:
+    Error:
+      description: Error accessing the service consistent with http status code
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidInput:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Unable to find resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    page:
+      name: page
+      in: query
+      description: The number of results page
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: The number of results in a single page
+      schema:
+        type: integer
+        format: int32
+        default: 100
+
+  

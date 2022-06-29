@@ -50,6 +50,51 @@ paths:
           $ref: '#/components/responses/InvalidInput'
         default:
           $ref: '#/components/responses/Error'
+  /contacts/id:
+    put:
+      tags:
+        - contacts
+      summary: Update an existing contact
+      operationId: UpdateContact
+      requestBody:
+        description: Requested Contact to be updated. Empty given fields will not be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContact'
+      responses:
+        201:
+          description: Updated contact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        400:
+          $ref: '#/components/responses/InvalidInput'
+        default:
+          $ref: '#/components/responses/Error'
+    delete:
+      tags:
+        - contacts
+      summary: Delete an existing Contact
+      operationId:  DeleteContact
+      requestBody:
+        description: Requested Contact to be deleted
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteContact'
+      responses:
+        201:
+          description: Status of delete operation
+
+        400:
+          $ref: '#/components/responses/InvalidInput'
+        default:
+          $ref: '#/components/responses/Error'
+
+
+
 
 
 components:
@@ -99,12 +144,30 @@ components:
           type: string
           description: Email of the employee
           example: walmark@gmail.com
+    ContactId:
+      required:
+        - Id
+      type: object
+      properties:
+        Id:
+          type: integer
+          description: Id of the requested contact entry
+          example: send request for entry with id 2 -> .../app/contacts/2
     Contact:
       allOf:
         - $ref: '#/components/schemas/ContactProperties'
     CreateContact:
       allOf:
         - $ref: '#/components/schemas/ContactProperties'
+    UpdateContact:
+      allOf:
+        - $ref: '#/components/schemas/ContactProperties'
+        - $ref: '#/components/schemas/ContactId'
+    DeleteContact:
+      allOf:
+        - $ref: '#/components/schemas/ContactProperties'
+        - $ref: '#/components/schemas/ContactId'
+
   responses:
     Error:
       description: Error accessing the service consistent with http status code

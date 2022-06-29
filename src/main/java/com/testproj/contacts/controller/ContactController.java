@@ -25,6 +25,10 @@ public class ContactController {
     public Contact UpdateContact(@Valid @RequestBody Contact contact,@PathVariable("id") Long Id){
         return contactservice.UpdateContact(contact,Id);
     }
+    @DeleteMapping("/app/contacts/{id}")
+    public void DeleteContact(@PathVariable("id") Long Id){
+        contactservice.DeleteContact(Id);
+    }
     @GetMapping("/app/contacts")
     public List<Contact> FetchContacts(){
         return contactservice.FetchContacts();

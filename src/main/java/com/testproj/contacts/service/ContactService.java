@@ -5,6 +5,7 @@ public interface ContactService {
 
     Contact AddContact(Contact contact);
     Contact UpdateContact(Contact contact,Long Id);
+    void DeleteContact(Long Id);
     List<Contact> FetchContacts();
 
 

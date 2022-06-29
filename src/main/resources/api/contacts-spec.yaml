@@ -4,7 +4,7 @@ info:
   description: Service to manage phonebook entries
   version: 1.0.0
 servers:
-  - url: 'https'
+  - url: 'app'
 paths:
   /contacts:
     get:

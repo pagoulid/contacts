@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name="CONTACT")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,23 +19,23 @@ public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Column(name="ID")
     private Long id;
+    @Column(name="FIRSTNAME")
+    private String firstname;
 
-    private String first_name;
+    @Column(name="LASTNAME")
+    private String lastname;
 
+    @Column(name="BUSINESSPHONE")
+    private String businessphone;
 
-    private String last_name;
+    @Column(name="PERSONALPHONE")
+    private String personalphone;
 
+    @Column(name="MOBILEPHONE")
+    private String mobilephone;
 
-    private String business_phone;
-
-
-    private String personal_phone;
-
-
-    private String mobile_phone;
-
-
-    private String personal_email;
+    @Column(name="PERSONALEMAIL")
+    private String personalemail;
 }

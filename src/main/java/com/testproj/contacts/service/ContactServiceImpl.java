@@ -20,35 +20,35 @@ public class ContactServiceImpl implements ContactService {
     public Contact UpdateContact(Contact contact,Long Id){
 
         Contact DBContact = contactrepo.findById(Id).get();
-        String given_fname = contact.getFirst_name();
-        String given_lname = contact.getLast_name();
-        String given_bphone = contact.getBusiness_phone();
-        String given_pphone = contact.getPersonal_phone();
-        String given_mphone = contact.getMobile_phone();
-        String given_mail = contact.getPersonal_email();
+        String given_fname = contact.getFirstname();
+        String given_lname = contact.getLastname();
+        String given_bphone = contact.getBusinessphone();
+        String given_pphone = contact.getPersonalphone();
+        String given_mphone = contact.getMobilephone();
+        String given_mail = contact.getPersonalemail();
 
         if(!given_fname.equals("")){
-            DBContact.setFirst_name(given_fname);
+            DBContact.setFirstname(given_fname);
         }
 
         if(!given_lname.equals("")){
-            DBContact.setLast_name(given_lname);
+            DBContact.setLastname(given_lname);
         }
 
         if(!given_bphone.equals("")){
-            DBContact.setBusiness_phone(given_bphone);
+            DBContact.setBusinessphone(given_bphone);
         }
 
         if(!given_pphone.equals("")){
-            DBContact.setPersonal_phone(given_pphone);
+            DBContact.setPersonalphone(given_pphone);
         }
 
         if(!given_mphone.equals("")){
-            DBContact.setMobile_phone(given_mphone);
+            DBContact.setMobilephone(given_mphone);
         }
 
         if(!given_mail.equals("")){
-            DBContact.setPersonal_email(given_mail);
+            DBContact.setPersonalemail(given_mail);
         }
 
         return contactrepo.save(DBContact);

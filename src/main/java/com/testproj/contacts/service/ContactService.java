@@ -7,6 +7,7 @@ public interface ContactService {
     Contact UpdateContact(Contact contact,Long Id);
     void DeleteContact(Long Id);
     List<Contact> FetchContacts();
+    List<Contact> FetchContactsSortedByLastName(String order);
 
 
 }

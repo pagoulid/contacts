@@ -66,4 +66,14 @@ public class ContactServiceImpl implements ContactService {
         return (List<Contact>) contactrepo.findAll();
 
     }
+
+    public  List<Contact> FetchContactsSortedByLastName(String order){
+        if(order.equals("Asc")){
+           return contactrepo.findAllByOrderByLastnameAsc();
+        }
+        else if(order.equals("Desc")){
+            return contactrepo.findAllByOrderByLastnameDesc();
+        }
+        return (List<Contact>) contactrepo.findAll();
+    }
 }

@@ -8,6 +8,7 @@ public interface ContactService {
     void DeleteContact(Long Id);
     List<Contact> FetchContacts();
     List<Contact> FetchContactsSortedByLastName(String order);
+    List<Contact> FetchContactsSortedByLastNameWithMatch(String order, String match,String name);
 
 
 }

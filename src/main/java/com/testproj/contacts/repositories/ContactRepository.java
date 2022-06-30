@@ -10,4 +10,11 @@ import java.util.List;
 public interface ContactRepository extends CrudRepository<Contact,Long>{
     public List<Contact> findAllByOrderByLastnameAsc();
     public List<Contact> findAllByOrderByLastnameDesc();
+
+    public List<Contact> findByFirstnameOrderByLastnameAsc(String name);
+
+    public List<Contact> findByLastnameOrderByLastnameAsc(String name);
+
+    public List<Contact> findByFirstnameOrderByLastnameDesc(String name);
+    public List<Contact> findByLastnameOrderByLastnameDesc(String name);
 }

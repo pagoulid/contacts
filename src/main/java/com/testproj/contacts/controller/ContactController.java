@@ -37,4 +37,9 @@ public class ContactController {
     public List<Contact> FetchContactsSortedByLastName(@PathVariable("order") String order){
         return contactservice.FetchContactsSortedByLastName(order);
     }
+    @GetMapping("/app/contacts/sorted/last-name")
+    @ResponseBody
+    public List<Contact> FetchContactsSortedByLastNameWithMatch(@RequestParam("order") String order,@RequestParam("match") String match,@RequestParam("name") String name){
+        return contactservice.FetchContactsSortedByLastNameWithMatch(order,match,name);
+    }
 }
